@@ -1,0 +1,31 @@
+{
+  "entities": {
+    "Lead": {
+      "title": "Lead",
+      "description": "A lead submitted from the Questionnaire Modal",
+      "type": "object",
+      "properties": {
+        "businessName": { "type": "string" },
+        "businessType": { "type": "string" },
+        "location": { "type": "string" },
+        "staff": { "type": "string" },
+        "challenge": { "type": "string" },
+        "leadSource": { "type": "string" },
+        "responseMethod": { "type": "string" },
+        "missedCalls": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "desiredOutcome": { "type": "string" },
+        "preferredTime": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["businessName", "businessType", "location", "challenge", "responseMethod", "missedCalls", "phone", "email", "desiredOutcome", "preferredTime", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/leads/{leadId}": {
+      "schema": { "$ref": "#/entities/Lead" },
+      "description": "Leads submitted via the questionnaire"
+    }
+  }
+}

@@ -1,0 +1,2523 @@
+{
+  "schemaVersion": "1",
+  "cliVersion": "0.16.0",
+  "version": "0.16.0",
+  "score": 46,
+  "label": "Critical",
+  "scoreable": true,
+  "coverage": {
+    "supportedFiles": 36,
+    "unsupportedFiles": 0,
+    "dominantUnsupported": null,
+    "scoreable": true
+  },
+  "engines": {
+    "format": {
+      "issues": 0,
+      "skipped": false,
+      "elapsed": 1684.6868760000002
+    },
+    "lint": {
+      "issues": 45,
+      "skipped": false,
+      "elapsed": 1703.558366
+    },
+    "code-quality": {
+      "issues": 35,
+      "skipped": false,
+      "elapsed": 1655.027083
+    },
+    "ai-slop": {
+      "issues": 4,
+      "skipped": false,
+      "elapsed": 1345.6993790000001
+    },
+    "security": {
+      "issues": 16,
+      "skipped": false,
+      "elapsed": 281.560794
+    }
+  },
+  "engineDefinitions": {
+    "format": {
+      "label": "Formatting",
+      "description": "Whitespace, indentation, line wrapping, and import ordering"
+    },
+    "lint": {
+      "label": "Linting",
+      "description": "Static analysis for likely bugs and bad patterns"
+    },
+    "code-quality": {
+      "label": "Code Quality",
+      "description": "Complexity limits, dead code detection, and duplication checks"
+    },
+    "ai-slop": {
+      "label": "AI Slop",
+      "description": "Narrative comments, dead patterns, unsafe type casts, TODO stubs, generic names"
+    },
+    "architecture": {
+      "label": "Architecture",
+      "description": "Project-specific import and layering rules"
+    },
+    "security": {
+      "label": "Security",
+      "description": "Secret leaks, risky APIs, and dependency vulnerabilities"
+    }
+  },
+  "diagnostics": [
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 86,
+      "column": 5,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "react/static-components",
+      "severity": "warning",
+      "message": "Cannot create components during render",
+      "help": "Components created during render will reset their state each time they are created. Declare components outside of render",
+      "line": 340,
+      "column": 46,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 158,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 171,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 183,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 195,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 206,
+      "column": 19,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Identifier 'User' is imported but never used.",
+      "help": "Consider removing this import.",
+      "line": 13,
+      "column": 3,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 132,
+      "column": 5,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 170,
+      "column": 7,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 720,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 776,
+      "column": 21,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/TestimonialsSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/alt-text",
+      "severity": "warning",
+      "message": "Missing `alt` attribute.",
+      "help": "Must have `alt` prop, either with meaningful text, or an empty string for decorative images.",
+      "line": 199,
+      "column": 25,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Identifier 'auth' is imported but never used.",
+      "help": "Consider removing this import.",
+      "line": 5,
+      "column": 14,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Interface 'FirestoreErrorInfo' is declared but never used.",
+      "help": "Consider removing this declaration.",
+      "line": 17,
+      "column": 11,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 186,
+      "column": 7,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 704,
+      "column": 29,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/label-has-associated-control",
+      "severity": "warning",
+      "message": "A form label must be associated with a control.",
+      "help": "Either give the label a `htmlFor` attribute with the id of the associated control, or wrap the label around the control.",
+      "line": 890,
+      "column": 31,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/lib/googleCalendar.ts",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'isSigningIn' is assigned a value but never used. Unused variables should start with a '_'.",
+      "help": "Did you mean to use this variable?",
+      "line": 17,
+      "column": 5,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/SolutionSection.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'y1' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 49,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/SolutionSection.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'y2' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 50,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/prefer-tag-over-role",
+      "severity": "warning",
+      "message": "Prefer `button` over `role` attribute `button`.",
+      "help": "Replace HTML elements with `role` attribute `button` to corresponding semantic HTML tag `button`.",
+      "line": 207,
+      "column": 19,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/alt-text",
+      "severity": "warning",
+      "message": "Missing `alt` attribute.",
+      "help": "Must have `alt` prop, either with meaningful text, or an empty string for decorative images.",
+      "line": 218,
+      "column": 19,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/prefer-tag-over-role",
+      "severity": "warning",
+      "message": "Prefer `button` over `role` attribute `button`.",
+      "help": "Replace HTML elements with `role` attribute `button` to corresponding semantic HTML tag `button`.",
+      "line": 288,
+      "column": 25,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/alt-text",
+      "severity": "warning",
+      "message": "Missing `alt` attribute.",
+      "help": "Must have `alt` prop, either with meaningful text, or an empty string for decorative images.",
+      "line": 299,
+      "column": 25,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/ScrollProgressBar.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/prefer-tag-over-role",
+      "severity": "warning",
+      "message": "Prefer `progress` over `role` attribute `progressbar`.",
+      "help": "Replace HTML elements with `role` attribute `progressbar` to corresponding semantic HTML tag `progress`.",
+      "line": 29,
+      "column": 7,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "components/Grainient.jsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-expressions",
+      "severity": "warning",
+      "message": "Expected expression to be used",
+      "help": "Consider using this expression or removing it",
+      "line": 221,
+      "column": 56,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Unused expressions often indicate dropped logic."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "components/Grainient.jsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-expressions",
+      "severity": "warning",
+      "message": "Expected expression to be used",
+      "help": "Consider using this expression or removing it",
+      "line": 228,
+      "column": 7,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Unused expressions often indicate dropped logic."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Footer.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/anchor-is-valid",
+      "severity": "warning",
+      "message": "Use of incorrect `href` for the 'a' element.",
+      "help": "Provide a correct `href` for the `a` element.",
+      "line": 10,
+      "column": 14,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Navbar.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Identifier 'Menu' is imported but never used.",
+      "help": "Consider removing this import.",
+      "line": 1,
+      "column": 10,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Navbar.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/anchor-is-valid",
+      "severity": "warning",
+      "message": "Use of incorrect `href` for the 'a' element.",
+      "help": "Provide a correct `href` for the `a` element.",
+      "line": 61,
+      "column": 10,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Navbar.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/control-has-associated-label",
+      "severity": "warning",
+      "message": "A control must be associated with a text label.",
+      "help": "Add a text label to the control element. This can be done by adding text content, an `aria-label` attribute, or an `aria-labelledby` attribute.",
+      "line": 118,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Chatbot.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 77,
+      "column": 7,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Chatbot.tsx",
+      "engine": "lint",
+      "rule": "react-hooks/exhaustive-deps",
+      "severity": "warning",
+      "message": "React Hook useEffect has a missing dependency: 'messages'",
+      "help": "Either include it or remove the dependency array.",
+      "line": 75,
+      "column": 34,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Identifier 'motion' is imported but never used.",
+      "help": "Consider removing this import.",
+      "line": 3,
+      "column": 10,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'dragX' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 93,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'lightX' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 104,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'lightY' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 105,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'glassX' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 108,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "eslint/no-unused-vars",
+      "severity": "warning",
+      "message": "Variable 'glassY' is declared but never used. Unused variables should start with a '_'.",
+      "help": "Consider removing this declaration.",
+      "line": 109,
+      "column": 9,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "mechanical",
+        "multiplier": 0.5,
+        "cap": 16,
+        "rationale": "Unused variables are mechanical cleanup."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 12,
+      "column": 7,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "react/set-state-in-effect",
+      "severity": "warning",
+      "message": "Calling setState synchronously within an effect can trigger cascading renders",
+      "help": "Effects should synchronize React with external systems. Calling setState synchronously inside an effect starts another render and is usually unnecessary. Derive the value during render, initialize state directly, or update it from the event that caused the change. Use an effect only when synchronizing with an external system.",
+      "line": 150,
+      "column": 5,
+      "category": "React",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "react-hooks/exhaustive-deps",
+      "severity": "warning",
+      "message": "React Hook useEffect has a missing dependency: 'AGENT_STATUSES.length'",
+      "help": "Either include it or remove the dependency array.",
+      "line": 154,
+      "column": 48,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/click-events-have-key-events",
+      "severity": "warning",
+      "message": "Enforce a clickable non-interactive element has at least one keyboard event listener.",
+      "help": "Visible, non-interactive elements with click handlers must have one of `keyup`, `keydown`, or `keypress` listener.",
+      "line": 161,
+      "column": 5,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "lint",
+      "rule": "jsx-a11y/no-static-element-interactions",
+      "severity": "warning",
+      "message": "Static HTML elements with event handlers require a role.",
+      "help": "Add a role attribute to this element, or use a semantic HTML element instead.",
+      "line": 161,
+      "column": 6,
+      "category": "Lint",
+      "fixable": false,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "standard",
+        "multiplier": 1,
+        "rationale": "Unclassified external rule uses standard impact."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "server.ts",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 80)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 69,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "startServer · 161 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/CalculatorSection.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 52,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "CalculatorSection · 316 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Chatbot.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 24,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "Chatbot · 239 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/FAQSection.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 18,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "FAQSection · 566 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/Hero.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 47,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "Hero · 290 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 91,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "IndustriesSection · 241 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/file-too-large",
+      "severity": "warning",
+      "message": "File too large (max: 600)",
+      "help": "Consider splitting this file into smaller modules",
+      "line": 0,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "1007 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Large files are reviewability pressure, but size alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 82,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "InteractiveScheduleMatrix · 925 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/deep-nesting",
+      "severity": "warning",
+      "message": "Function nested too deeply (max: 5)",
+      "help": "Consider using early returns or extracting nested logic",
+      "line": 82,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "InteractiveScheduleMatrix · depth 7",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Deep nesting makes behavior harder to reason about and is more actionable than pure size."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 80)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 247,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "handleBookConsultation · 106 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/file-too-large",
+      "severity": "warning",
+      "message": "File too large (max: 600)",
+      "help": "Consider splitting this file into smaller modules",
+      "line": 0,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "1318 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Large files are reviewability pressure, but size alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 114,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "QuestionnaireModal · 1204 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/deep-nesting",
+      "severity": "warning",
+      "message": "Function nested too deeply (max: 5)",
+      "help": "Consider using early returns or extracting nested logic",
+      "line": 114,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "QuestionnaireModal · depth 6",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Deep nesting makes behavior harder to reason about and is more actionable than pure size."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/TestimonialsSection.tsx",
+      "engine": "code-quality",
+      "rule": "complexity/function-too-long",
+      "severity": "warning",
+      "message": "Function too long (max: 160)",
+      "help": "Consider breaking this function into smaller pieces",
+      "line": 97,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "TestimonialsSection · 182 lines",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Long functions are maintainability pressure, but length alone is not a confirmed defect."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 286,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "17 lines duplicate block at L205",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 304,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "10 lines duplicate block at L223",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/InteractiveScheduleMatrix.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 358,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "12 lines duplicate block at L100",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 370,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "16 lines duplicate block at L335",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 660,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "19 lines duplicate block at L567",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 670,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "12 lines duplicate block at L577",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 683,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "18 lines duplicate block at L590",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 746,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "19 lines duplicate block at L614",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 756,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "10 lines duplicate block at L624",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 801,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "18 lines duplicate block at L615",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 848,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "17 lines duplicate block at L616",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 950,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "18 lines duplicate block at L568",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 960,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "11 lines duplicate block at L578",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 973,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "10 lines duplicate block at L591",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1007,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "17 lines duplicate block at L569",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1017,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "10 lines duplicate block at L579",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1030,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "17 lines duplicate block at L974",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1074,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "16 lines duplicate block at L617",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1123,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "19 lines duplicate block at L798",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/QuestionnaireModal.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 1133,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "11 lines duplicate block at L622",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/SolutionSection.tsx",
+      "engine": "code-quality",
+      "rule": "code-quality/duplicate-block",
+      "severity": "warning",
+      "message": "Duplicate code block — extract a shared helper",
+      "help": "Pull the shared logic into a function both sites can call. Keeps one version of the truth and makes future changes one-shot instead of N-shot.",
+      "line": 115,
+      "column": 0,
+      "category": "Complexity",
+      "fixable": false,
+      "detail": "13 lines duplicate block at L77",
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "maintainability",
+        "multiplier": 0.75,
+        "cap": 24,
+        "rationale": "Large copy-paste blocks are real maintenance debt, but repeated blocks are less severe than defects."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "server.ts",
+      "engine": "ai-slop",
+      "rule": "ai-slop/console-leftover",
+      "severity": "warning",
+      "message": "console.log/debug/info statement left in production code",
+      "help": "Remove debugging console statements or replace with a proper logger",
+      "line": 227,
+      "column": 0,
+      "category": "AI Slop",
+      "fixable": true,
+      "assessment": {
+        "kind": "style-policy",
+        "confidence": "medium",
+        "label": "style/policy"
+      },
+      "scoreImpact": {
+        "tier": "style",
+        "multiplier": 0.5,
+        "cap": 8,
+        "rationale": "Leftover debug output is visible cleanup unless it leaks sensitive data."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "server.ts",
+      "engine": "ai-slop",
+      "rule": "ai-slop/hardcoded-url",
+      "severity": "warning",
+      "message": "Hardcoded environment URL in production code",
+      "help": "Move deployment-specific URLs to environment variables or a typed config module. Keep only stable documentation/public links inline.",
+      "line": 90,
+      "column": 0,
+      "category": "AI Slop",
+      "fixable": false,
+      "assessment": {
+        "kind": "ai-slop-indicator",
+        "confidence": "medium",
+        "label": "AI-slop indicators"
+      },
+      "scoreImpact": {
+        "tier": "advisory",
+        "multiplier": 0.25,
+        "cap": 4,
+        "rationale": "Hardcoded URLs are medium-confidence config signals and can be intentional canonical URLs."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/IndustriesSection.tsx",
+      "engine": "ai-slop",
+      "rule": "ai-slop/hardcoded-url",
+      "severity": "warning",
+      "message": "Hardcoded environment URL in production code",
+      "help": "Move deployment-specific URLs to environment variables or a typed config module. Keep only stable documentation/public links inline.",
+      "line": 73,
+      "column": 0,
+      "category": "AI Slop",
+      "fixable": false,
+      "assessment": {
+        "kind": "ai-slop-indicator",
+        "confidence": "medium",
+        "label": "AI-slop indicators"
+      },
+      "scoreImpact": {
+        "tier": "advisory",
+        "multiplier": 0.25,
+        "cap": 4,
+        "rationale": "Hardcoded URLs are medium-confidence config signals and can be intentional canonical URLs."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "src/components/TestimonialsSection.tsx",
+      "engine": "ai-slop",
+      "rule": "ai-slop/hardcoded-url",
+      "severity": "warning",
+      "message": "Hardcoded environment URL in production code",
+      "help": "Move deployment-specific URLs to environment variables or a typed config module. Keep only stable documentation/public links inline.",
+      "line": 82,
+      "column": 0,
+      "category": "AI Slop",
+      "fixable": false,
+      "assessment": {
+        "kind": "ai-slop-indicator",
+        "confidence": "medium",
+        "label": "AI-slop indicators"
+      },
+      "scoreImpact": {
+        "tier": "advisory",
+        "multiplier": 0.25,
+        "cap": 4,
+        "rationale": "Hardcoded URLs are medium-confidence config signals and can be intentional canonical URLs."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "@hono/node-server (moderate) — Node.js Adapter for Hono: Path traversal in `serve-static` on Windows via encoded backslash (`%5C`)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "body-parser (low) — body-parser vulnerable to denial of service when invalid limit value silently disables size enforcement (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "brace-expansion (high) — brace-expansion: DoS via unbounded expansion length causing an out-of-memory process crash (3 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "browserslist (high) — Browserslist: Unbounded memory growth (no cache eviction) via distinct query results, leading to eventual OOM (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "esbuild (low) — esbuild allows arbitrary file read when running the development server on Windows",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "fast-uri (high) — fast-uri vulnerable to server-side request forgery via malformed IPv6 normalization (6 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "hono (high) — Hono: ReDoS in CORS middleware via Access-Control-Request-Headers (12 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "ip-address (high) — ip-address: Address4 decodes leading-zero octets as decimal while resolvers decode them as octal, allowing SSRF and trust-boundary bypass (3 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "js-yaml (high) — JS-YAML: Quadratic-complexity DoS in merge key handling via repeated aliases (3 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "nanoid (high) — nanoid: non-secure generators can loop indefinitely with negative size (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "postcss (high) — PostCSS: incomplete fix of GHSA-6g55-p6wh-862q — attacker-controlled sourceMappingURL reads arbitrary .map files when `from` is unset (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "postcss-selector-parser (low) — postcss-selector-parser allows denial of service through uncontrolled AST recursion",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "protobufjs (moderate) — protobufjs : Schema-derived names can shadow runtime-significant properties (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "warning",
+      "message": "qs (moderate) — qs array-limit bypass via bracket-key comma parsing (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "vite (high) — launch-editor: NTLMv2 hash disclosure via UNC path handling on Windows (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    },
+    {
+      "filePath": "package.json",
+      "engine": "security",
+      "rule": "security/vulnerable-dependency",
+      "severity": "error",
+      "message": "websocket-driver (critical) — websocket-driver: Resource limit bypass via message compression (2 advisories)",
+      "help": "",
+      "line": 0,
+      "column": 0,
+      "category": "Security",
+      "fixable": false,
+      "detail": "bun",
+      "assessment": {
+        "kind": "confirmed-defect",
+        "confidence": "high",
+        "label": "confirmed defects"
+      },
+      "scoreImpact": {
+        "tier": "strict",
+        "multiplier": 1,
+        "rationale": "Known vulnerabilities deserve full impact even when remediation varies."
+      },
+      "forceFixable": false
+    }
+  ],
+  "findingAssessment": {
+    "rows": [
+      {
+        "kind": "style-policy",
+        "label": "style/policy",
+        "count": 81,
+        "errors": 0,
+        "warnings": 81,
+        "info": 0,
+        "fixable": 1
+      },
+      {
+        "kind": "confirmed-defect",
+        "label": "confirmed defects",
+        "count": 16,
+        "errors": 10,
+        "warnings": 6,
+        "info": 0,
+        "fixable": 0
+      },
+      {
+        "kind": "ai-slop-indicator",
+        "label": "AI-slop indicators",
+        "count": 3,
+        "errors": 0,
+        "warnings": 3,
+        "info": 0,
+        "fixable": 0
+      }
+    ],
+    "byKind": {
+      "confirmed-defect": 16,
+      "conservative-security": 0,
+      "style-policy": 81,
+      "ai-slop-indicator": 3
+    },
+    "byConfidence": {
+      "high": 16,
+      "medium": 84,
+      "low": 0
+    }
+  },
+  "summary": {
+    "errors": 10,
+    "warnings": 90,
+    "fixable": 1,
+    "files": 36,
+    "elapsed": "1.9s"
+  }
+}
