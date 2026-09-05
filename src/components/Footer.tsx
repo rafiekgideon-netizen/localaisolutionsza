@@ -1,10 +1,6 @@
 import { WhatsAppIcon } from "./WhatsAppIcon";
-import { useTheme } from "../context/ThemeContext";
-import { Sun, Moon } from "lucide-react";
 
 export function Footer() {
-  const { theme, setTheme } = useTheme();
-
   return (
     <footer className="bg-[var(--color-primary)] py-20 relative border-t border-[rgba(255,255,255,0.06)] dark:border-[rgba(255,255,255,0.06)] border-slate-200">
       <div className="absolute inset-0 bg-ethereal-glow pointer-events-none opacity-20" />
@@ -22,49 +18,6 @@ export function Footer() {
               We don't sell AI. We recover revenue. 
               Cape Town-based automation agency building 24/7 systems that work while you sleep.
             </p>
-
-            {/* Theme Switcher in Footer Brand Column */}
-            <div className="mt-6 pt-6 border-t border-[rgba(255,255,255,0.06)] dark:border-[rgba(255,255,255,0.06)] border-slate-200">
-              <span className="font-mono text-[10px] text-[var(--color-muted-dark)] uppercase tracking-wider block mb-2 font-medium">
-                Interface Appearance
-              </span>
-              <div 
-                className="inline-flex items-center p-1 rounded-full bg-[rgba(255,255,255,0.04)] dark:bg-[rgba(255,255,255,0.04)] bg-slate-200/80 border border-[rgba(255,255,255,0.08)] dark:border-[rgba(255,255,255,0.08)] border-slate-300"
-                role="radiogroup"
-                aria-label="Theme mode selection"
-              >
-                <button
-                  type="button"
-                  onClick={() => setTheme("light")}
-                  role="radio"
-                  aria-checked={theme === "light"}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
-                    theme === "light"
-                      ? "bg-white text-slate-900 shadow-sm font-semibold"
-                      : "text-[var(--color-muted)] hover:text-slate-900 dark:hover:text-white"
-                  }`}
-                  aria-label="Switch to Light Theme"
-                >
-                  <Sun className="w-3.5 h-3.5 text-amber-500" />
-                  <span>Light</span>
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setTheme("dark")}
-                  role="radio"
-                  aria-checked={theme === "dark"}
-                  className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-mono transition-all duration-200 cursor-pointer ${
-                    theme === "dark"
-                      ? "bg-[var(--color-tertiary)] text-black shadow-sm font-bold"
-                      : "text-[var(--color-muted)] hover:text-slate-900 dark:hover:text-white"
-                  }`}
-                  aria-label="Switch to Dark Theme"
-                >
-                  <Moon className="w-3.5 h-3.5" />
-                  <span>Dark</span>
-                </button>
-              </div>
-            </div>
           </div>
           
           <div>

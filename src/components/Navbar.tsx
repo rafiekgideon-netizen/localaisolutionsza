@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { WhatsAppIcon } from "./WhatsAppIcon";
 import { SlidingTextButton } from "./ui/sliding-text-button";
-import { ThemeToggle } from "./ui/ThemeToggle";
 import { useTheme } from "../context/ThemeContext";
 
 interface NavbarProps {
@@ -120,10 +119,6 @@ export function Navbar({ onOpenAudit }: NavbarProps) {
 
         {/* Desktop Actions */}
         <div className="hidden md:flex items-center gap-3 relative z-50">
-          <ThemeToggle 
-            variant="compact" 
-            id="navbar-desktop-theme-toggle" 
-          />
           <motion.a 
             href="https://wa.me/27682265793" 
             target="_blank" 
@@ -142,12 +137,8 @@ export function Navbar({ onOpenAudit }: NavbarProps) {
           </SlidingTextButton>
         </div>
 
-        {/* Mobile Actions: Immediate Theme Toggle + Accessible Menu Hamburger */}
+        {/* Mobile Actions: Accessible Menu Hamburger */}
         <div className="flex md:hidden items-center gap-2 relative z-50">
-          <ThemeToggle 
-            variant="compact" 
-            id="navbar-mobile-header-toggle" 
-          />
           <button
             type="button"
             aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
@@ -214,24 +205,6 @@ export function Navbar({ onOpenAudit }: NavbarProps) {
             );
           })}
 
-          {/* Accessible Light / Dark Mode Toggle Block inside Mobile Nav Menu */}
-          <div 
-            className={`w-full pt-4 border-t ${
-              isLight ? "border-slate-200" : "border-white/10"
-            } flex flex-col items-center gap-2.5 transition-all duration-500 transform ${
-              mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-            }`}
-            style={{ transitionDelay: '260ms' }}
-          >
-            <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-muted)] font-semibold">
-              Appearance
-            </span>
-            <ThemeToggle 
-              variant="segmented" 
-              id="navbar-mobile-menu-theme-toggle" 
-            />
-          </div>
-          
           {/* WhatsApp Chat Link */}
           <a 
             href="https://wa.me/27682265793"
@@ -240,7 +213,7 @@ export function Navbar({ onOpenAudit }: NavbarProps) {
             className={`w-full max-w-xs btn-whatsapp transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] transform ${
               mobileMenuOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
             } flex items-center justify-center gap-2.5`}
-            style={{ transitionDelay: '320ms' }}
+            style={{ transitionDelay: '240ms' }}
             onClick={() => setMobileMenuOpen(false)}
           >
             <WhatsAppIcon size={20} className="text-black" /> Let's Chat

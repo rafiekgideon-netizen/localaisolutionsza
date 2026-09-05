@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import { ArrowRight, BarChart3, List, TrendingUp, Sparkles, CalendarClock, ShieldCheck, Clock3 } from "lucide-react";
+import { ArrowRight, BarChart3, List, TrendingUp, Sparkles, CalendarClock, ShieldCheck, Clock3, Lock, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { SlidingTextButton } from "./ui/sliding-text-button";
 import { useTheme } from "../context/ThemeContext";
@@ -96,10 +96,25 @@ export function CalculatorSection({ onOpenAudit }: CalculatorSectionProps) {
   const [viewMode, setViewMode] = useState<"trend" | "breakdown" | "list">("trend");
   const [isLiveCalculating, setIsLiveCalculating] = useState(false);
 
-  // Trigger brief visual telemetry activity pulse when user touches sliders
+  // Progressive disclosure states: inputs are visible, outputs blurred until data is captured
+  const [hasCapturedData, setHasCapturedData] = useState(false);
+  const [isCapturing, setIsCapturing] = useState(false);
+
+  // Trigger real-time recalculation and telemetry pulse
   const handleSliderChange = (setter: (val: any) => void, val: any) => {
     setter(val);
-    setIsLiveCalculating(true);
+    if (hasCapturedData) {
+      setIsLiveCalculating(true);
+    }
+  };
+
+  const handleCalculateLeak = () => {
+    setIsCapturing(true);
+    setTimeout(() => {
+      setIsCapturing(false);
+      setHasCapturedData(true);
+      setIsLiveCalculating(true);
+    }, 600);
   };
 
   useEffect(() => {
@@ -345,6 +360,57 @@ export function CalculatorSection({ onOpenAudit }: CalculatorSectionProps) {
                   </select>
                 </div>
               </div>
+
+              {/* Action / Sync Bar */}
+              {!hasCapturedData ? (
+                <div className="pt-6 mt-6 border-t border-black/10 dark:border-white/10">
+                  <button
+                    type="button"
+                    onClick={handleCalculateLeak}
+                    disabled={isCapturing}
+                    className="w-full btn-primary !py-3.5 sm:!py-4 text-sm sm:text-base font-semibold flex items-center justify-center gap-3 shadow-xl shadow-[var(--color-tertiary)]/20 cursor-pointer group"
+                  >
+                    {isCapturing ? (
+                      <>
+                        <div className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                        <span>Calculating Financial Leak & Projections...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Sparkles className="w-4 h-4 text-black group-hover:scale-110 transition-transform" />
+                        <span>Calculate Revenue Leak & Projections</span>
+                        <ArrowRight className="w-4 h-4 text-black group-hover:translate-x-1 transition-transform" />
+                      </>
+                    )}
+                  </button>
+                  <p className="font-mono text-[11px] text-[var(--color-muted)] text-center mt-2.5">
+                    Captures your parameters to reveal monthly leak, recovery trend & 12-month savings
+                  </p>
+                </div>
+              ) : (
+                <div className="pt-5 mt-5 border-t border-black/10 dark:border-white/10 flex items-center justify-between flex-wrap gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
+                    </span>
+                    <span className="font-mono text-xs text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1.5">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500" />
+                      Parameters Captured & Live
+                    </span>
+                    <span className="text-[10px] font-mono text-[var(--color-muted)] hidden sm:inline">
+                      • Moving sliders updates projections fluidly in real time
+                    </span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => setHasCapturedData(false)}
+                    className="font-mono text-[11px] text-[var(--color-muted)] hover:text-[var(--color-tertiary)] underline cursor-pointer"
+                  >
+                    Reset View
+                  </button>
+                </div>
+              )}
             </div>
           </motion.div>
 
@@ -356,7 +422,92 @@ export function CalculatorSection({ onOpenAudit }: CalculatorSectionProps) {
             transition={{ duration: 0.4, delay: 0.1 }}
             className="lg:col-span-5 ethereal-card-shell h-full w-full min-w-0"
           >
-            <div className="ethereal-card-core h-full flex flex-col p-6 sm:p-8 md:p-10 !bg-[rgba(249,115,22,0.03)] border-none ring-1 ring-[rgba(249,115,22,0.14)] relative overflow-hidden w-full min-w-0" style={{ backdropFilter: "none", WebkitBackdropFilter: "none" }}>
+            <AnimatePresence mode="wait">
+              {!hasCapturedData ? (
+                /* Blurred Skeleton Loading State for Estimated Monthly Leak */
+                <motion.div
+                  key="skeleton-monthly-leak"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.25 }}
+                  className="ethereal-card-core h-full flex flex-col p-6 sm:p-8 md:p-10 !bg-[rgba(249,115,22,0.02)] border-none ring-1 ring-[rgba(249,115,22,0.14)] relative overflow-hidden w-full min-w-0 min-h-[520px]"
+                  style={{ backdropFilter: "none", WebkitBackdropFilter: "none" }}
+                >
+                  {/* Blurred Skeleton Content */}
+                  <div className="filter blur-[5px] opacity-40 select-none pointer-events-none flex-1 flex flex-col justify-between space-y-6">
+                    <div className="flex items-center justify-between pb-4 border-b border-black/10 dark:border-white/10">
+                      <div className="h-3.5 w-36 bg-[var(--color-tertiary)]/30 rounded animate-pulse" />
+                      <div className="h-7 w-20 bg-white/10 rounded-full animate-pulse" />
+                    </div>
+
+                    <div className="space-y-2">
+                      <div className="h-12 w-48 bg-white/20 dark:bg-white/15 rounded-lg animate-pulse" />
+                      <div className="h-3 w-56 bg-white/10 rounded animate-pulse" />
+                    </div>
+
+                    <div className="p-4 bg-white/5 border border-white/10 rounded-xl flex justify-between items-center">
+                      <div className="space-y-1.5">
+                        <div className="h-2.5 w-24 bg-emerald-500/30 rounded" />
+                        <div className="h-6 w-16 bg-white/20 rounded" />
+                      </div>
+                      <div className="space-y-1.5 text-right">
+                        <div className="h-2.5 w-28 bg-white/10 rounded ml-auto" />
+                        <div className="h-4 w-20 bg-emerald-500/30 rounded ml-auto" />
+                      </div>
+                    </div>
+
+                    <div className="h-[140px] w-full bg-white/5 border border-white/10 rounded-xl p-4 flex items-end justify-between gap-2">
+                      <div className="w-1/6 h-1/4 bg-white/10 rounded-t animate-pulse" />
+                      <div className="w-1/6 h-1/2 bg-red-400/20 rounded-t animate-pulse" />
+                      <div className="w-1/6 h-2/3 bg-amber-400/20 rounded-t animate-pulse" />
+                      <div className="w-1/6 h-full bg-emerald-400/20 rounded-t animate-pulse" />
+                      <div className="w-1/6 h-3/4 bg-orange-400/20 rounded-t animate-pulse" />
+                      <div className="w-1/6 h-5/6 bg-emerald-500/20 rounded-t animate-pulse" />
+                    </div>
+
+                    <div className="h-12 w-full bg-[var(--color-tertiary)]/20 rounded-full animate-pulse mt-auto" />
+                  </div>
+
+                  {/* Centered Interactive Prompt Overlay */}
+                  <div className="absolute inset-0 bg-black/45 dark:bg-black/70 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-20">
+                    <div className="w-14 h-14 rounded-2xl bg-[var(--color-tertiary)]/15 border border-[var(--color-tertiary)]/30 flex items-center justify-center text-[var(--color-tertiary)] mb-3.5 shadow-xl shadow-[var(--color-tertiary)]/10">
+                      {isCapturing ? (
+                        <div className="w-6 h-6 border-2 border-[var(--color-tertiary)] border-t-transparent rounded-full animate-spin" />
+                      ) : (
+                        <Lock className="w-6 h-6" />
+                      )}
+                    </div>
+                    <p className="font-display text-lg sm:text-xl text-white font-bold mb-1.5">
+                      {isCapturing ? "Computing Financial Model..." : "Estimated Monthly Leak Locked"}
+                    </p>
+                    <p className="font-body text-xs text-[var(--color-muted)] max-w-xs mb-5">
+                      {isCapturing 
+                        ? "Synthesizing Cape Town trade lead response data..." 
+                        : "Configure your capture parameters and click 'Calculate' to reveal your personalized financial diagnosis."}
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleCalculateLeak}
+                      disabled={isCapturing}
+                      className="btn-primary !py-2.5 !px-5 text-xs font-semibold shadow-lg shadow-[var(--color-tertiary)]/25 flex items-center gap-2 cursor-pointer"
+                    >
+                      {isCapturing ? "Analyzing..." : "Reveal Estimated Leak"}
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                /* Active, Fluidly Animated Estimated Monthly Leak Card */
+                <motion.div
+                  key="active-monthly-leak"
+                  initial={{ opacity: 0, scale: 0.98, filter: "blur(4px)" }}
+                  animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  transition={{ duration: 0.45, ease: "easeOut" }}
+                  className="ethereal-card-core h-full flex flex-col p-6 sm:p-8 md:p-10 !bg-[rgba(249,115,22,0.03)] border-none ring-1 ring-[rgba(249,115,22,0.14)] relative overflow-hidden w-full min-w-0"
+                  style={{ backdropFilter: "none", WebkitBackdropFilter: "none" }}
+                >
               <div className="absolute top-0 right-0 w-72 sm:w-96 h-72 sm:h-96 max-w-full bg-[radial-gradient(circle,rgba(249,115,22,0.08)_0%,transparent_70%)] pointer-events-none transform translate-x-1/2 -translate-y-1/2" />
               
               <div className="flex items-center justify-between mb-4 pb-4 border-b border-black/10 dark:border-white/10">
@@ -618,134 +769,201 @@ export function CalculatorSection({ onOpenAudit }: CalculatorSectionProps) {
                   </div>
                 </SlidingTextButton>
               </div>
-            </div>
-          </motion.div>
-        </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
+    </div>
 
         {/* Dedicated "Annual Savings Projection" Interactive Feature with Real-Time Count-Up Animation */}
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.15 }}
-          className="mt-8 ethereal-card-shell w-full"
-        >
-          <div className="ethereal-card-core p-6 sm:p-8 md:p-10 !bg-gradient-to-br from-[rgba(249,115,22,0.06)] via-transparent to-[rgba(16,185,129,0.04)] border border-[rgba(249,115,22,0.2)] rounded-2xl relative overflow-hidden">
-            
-            {/* Ambient highlight glow */}
-            <div className="absolute -top-24 -right-24 w-80 h-80 bg-[radial-gradient(circle,rgba(249,115,22,0.1)_0%,transparent_70%)] pointer-events-none" />
-            
-            <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 mb-6 border-b border-black/10 dark:border-white/10 relative z-10">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-xl bg-[var(--color-tertiary)]/15 border border-[var(--color-tertiary)]/30 flex items-center justify-center text-[var(--color-tertiary)]">
-                  <CalendarClock className="w-6 h-6" />
+        <AnimatePresence mode="wait">
+          {!hasCapturedData ? (
+            /* Blurred Skeleton Loading State for Annual Savings Projection */
+            <motion.div 
+              key="skeleton-annual-savings"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+              className="mt-8 ethereal-card-shell w-full relative overflow-hidden"
+            >
+              <div className="ethereal-card-core p-6 sm:p-8 md:p-10 !bg-gradient-to-br from-[rgba(249,115,22,0.02)] via-transparent to-[rgba(16,185,129,0.02)] border border-black/10 dark:border-white/10 rounded-2xl relative overflow-hidden">
+                {/* Blurred Skeleton Content */}
+                <div className="filter blur-[5px] opacity-35 select-none pointer-events-none space-y-6">
+                  <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-black/10 dark:border-white/10">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-xl bg-white/10 animate-pulse" />
+                      <div className="space-y-2">
+                        <div className="h-5 w-52 bg-white/20 rounded animate-pulse" />
+                        <div className="h-3 w-72 bg-white/10 rounded animate-pulse" />
+                      </div>
+                    </div>
+                    <div className="h-7 w-36 bg-white/10 rounded-full animate-pulse" />
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="p-5 rounded-xl bg-black/10 dark:bg-white/5 border border-white/10 space-y-3">
+                        <div className="h-3 w-32 bg-white/15 rounded animate-pulse" />
+                        <div className="h-8 w-28 bg-white/20 rounded animate-pulse" />
+                        <div className="h-2.5 w-36 bg-white/10 rounded animate-pulse" />
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2">
-                    <h3 className="font-display text-xl sm:text-2xl text-white font-bold tracking-tight">
-                      Annual Savings Projection
-                    </h3>
-                    <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[10px] font-mono uppercase bg-[var(--color-tertiary)]/15 text-[var(--color-tertiary)] font-bold border border-[var(--color-tertiary)]/25">
-                      12-Month Horizon
+
+                {/* Centered Overlay */}
+                <div className="absolute inset-0 bg-black/45 dark:bg-black/70 backdrop-blur-md flex flex-col items-center justify-center p-6 text-center z-20">
+                  <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[var(--color-muted)] mb-3">
+                    <Lock className="w-3.5 h-3.5 text-[var(--color-tertiary)]" />
+                    <span>Annual Savings Projection Locked</span>
+                  </div>
+                  <p className="font-display text-lg sm:text-xl text-white font-bold mb-1.5">
+                    12-Month Compound Recovery Model
+                  </p>
+                  <p className="font-body text-xs text-[var(--color-muted)] max-w-md mb-4">
+                    Unlocks automatically once your operational parameters are captured in Step 1.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={handleCalculateLeak}
+                    disabled={isCapturing}
+                    className="btn-secondary text-xs !py-2.5 !px-5 cursor-pointer inline-flex items-center gap-2 hover:border-[var(--color-tertiary)]"
+                  >
+                    {isCapturing ? "Calculating..." : "Calculate to Unlock Projections"}
+                    <ArrowRight className="w-3.5 h-3.5 text-[var(--color-tertiary)]" />
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          ) : (
+            /* Active, Fluidly Animated Annual Savings Projection */
+            <motion.div 
+              key="active-annual-savings"
+              initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.5, ease: "easeOut" }}
+              className="mt-8 ethereal-card-shell w-full"
+            >
+              <div className="ethereal-card-core p-6 sm:p-8 md:p-10 !bg-gradient-to-br from-[rgba(249,115,22,0.06)] via-transparent to-[rgba(16,185,129,0.04)] border border-[rgba(249,115,22,0.2)] rounded-2xl relative overflow-hidden">
+                
+                {/* Ambient highlight glow */}
+                <div className="absolute -top-24 -right-24 w-80 h-80 bg-[radial-gradient(circle,rgba(249,115,22,0.1)_0%,transparent_70%)] pointer-events-none" />
+                
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 mb-6 border-b border-black/10 dark:border-white/10 relative z-10">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-xl bg-[var(--color-tertiary)]/15 border border-[var(--color-tertiary)]/30 flex items-center justify-center text-[var(--color-tertiary)]">
+                      <CalendarClock className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h3 className="font-display text-xl sm:text-2xl text-white font-bold tracking-tight">
+                          Annual Savings Projection
+                        </h3>
+                        <span className="hidden sm:inline-flex px-2 py-0.5 rounded-full text-[10px] font-mono uppercase bg-[var(--color-tertiary)]/15 text-[var(--color-tertiary)] font-bold border border-[var(--color-tertiary)]/25">
+                          12-Month Horizon
+                        </span>
+                      </div>
+                      <p className="font-body text-xs sm:text-sm text-[var(--color-muted)]">
+                        Projected compound revenue preserved across a full 12-month autonomous deployment
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Real-time sync status indicator */}
+                  <div className="flex items-center gap-2 text-xs font-mono text-[var(--color-muted)] bg-black/10 dark:bg-white/5 px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 w-fit">
+                    <span className={`w-2 h-2 rounded-full ${isLiveCalculating ? "bg-amber-400 animate-ping" : "bg-emerald-400"}`} />
+                    <span>{isLiveCalculating ? "Re-calculating 12-Mo ROI..." : "Real-Time Count-Up Active"}</span>
+                  </div>
+                </div>
+
+                {/* Annual Numbers Display with Count-Up Transition */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+                  
+                  {/* Primary Metric: Potential Revenue Recovered */}
+                  <div className="p-5 rounded-xl bg-black/10 dark:bg-black/30 border border-[var(--color-tertiary)]/30 relative overflow-hidden">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-mono text-[11px] text-[var(--color-tertiary)] uppercase tracking-wider font-bold">
+                        Potential Revenue Recovered
+                      </span>
+                      <Sparkles className="w-3.5 h-3.5 text-[var(--color-tertiary)]" />
+                    </div>
+                    <div className="font-display text-2xl sm:text-3xl text-white font-extrabold tracking-tight tabular-nums">
+                      <CountUpNumber value={annualRecovered} formatFn={formatZAR} />
+                    </div>
+                    <span className="font-mono text-[10px] text-[var(--color-success)] mt-1 block font-medium">
+                      +12-Month Net Cashflow Protected
                     </span>
                   </div>
-                  <p className="font-body text-xs sm:text-sm text-[var(--color-muted)]">
-                    Projected compound revenue preserved across a full 12-month autonomous deployment
-                  </p>
+
+                  {/* Secondary Metric: Annual Leak Prevented */}
+                  <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
+                        Total Annual Leak Prevented
+                      </span>
+                      <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
+                    </div>
+                    <div className="font-display text-2xl sm:text-3xl text-white font-bold tracking-tight tabular-nums">
+                      <CountUpNumber value={annualLeak} formatFn={formatZAR} />
+                    </div>
+                    <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
+                      Missed calls + slow quote penalties
+                    </span>
+                  </div>
+
+                  {/* Tertiary Metric: Projected Annual Run-Rate */}
+                  <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
+                        Projected Annual Run-Rate
+                      </span>
+                      <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+                    </div>
+                    <div className="font-display text-2xl sm:text-3xl text-emerald-400 font-bold tracking-tight tabular-nums">
+                      <CountUpNumber value={annualRunRate} formatFn={formatZAR} />
+                    </div>
+                    <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
+                      Current turnover + recovered revenue
+                    </span>
+                  </div>
+
+                  {/* Quaternary Metric: Hours Reclaimed */}
+                  <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
+                    <div className="flex items-center justify-between mb-1.5">
+                      <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
+                        Admin Hours Reclaimed
+                      </span>
+                      <Clock3 className="w-3.5 h-3.5 text-amber-400" />
+                    </div>
+                    <div className="font-display text-2xl sm:text-3xl text-white font-bold tracking-tight tabular-nums">
+                      <CountUpNumber value={annualHoursSaved} /> hrs
+                    </div>
+                    <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
+                      ~<CountUpNumber value={annualLeadsSaved} /> client leads saved / year
+                    </span>
+                  </div>
                 </div>
-              </div>
 
-              {/* Real-time sync status indicator */}
-              <div className="flex items-center gap-2 text-xs font-mono text-[var(--color-muted)] bg-black/10 dark:bg-white/5 px-3 py-1.5 rounded-full border border-black/10 dark:border-white/10 w-fit">
-                <span className={`w-2 h-2 rounded-full ${isLiveCalculating ? "bg-amber-400 animate-ping" : "bg-emerald-400"}`} />
-                <span>{isLiveCalculating ? "Re-calculating 12-Mo ROI..." : "Real-Time Count-Up Active"}</span>
-              </div>
-            </div>
-
-            {/* Annual Numbers Display with Count-Up Transition */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-              
-              {/* Primary Metric: Potential Revenue Recovered */}
-              <div className="p-5 rounded-xl bg-black/10 dark:bg-black/30 border border-[var(--color-tertiary)]/30 relative overflow-hidden">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-mono text-[11px] text-[var(--color-tertiary)] uppercase tracking-wider font-bold">
-                    Potential Revenue Recovered
+                {/* Bottom summary note */}
+                <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--color-muted)]">
+                  <span className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-tertiary)]" />
+                    Projections modeled on verified Cape Town trades & contractor conversion data.
                   </span>
-                  <Sparkles className="w-3.5 h-3.5 text-[var(--color-tertiary)]" />
+                  <button 
+                    type="button"
+                    onClick={onOpenAudit}
+                    className="text-[var(--color-tertiary)] hover:underline font-semibold cursor-pointer inline-flex items-center gap-1"
+                  >
+                    Claim your customized audit <ArrowRight className="w-3.5 h-3.5" />
+                  </button>
                 </div>
-                <div className="font-display text-2xl sm:text-3xl text-white font-extrabold tracking-tight tabular-nums">
-                  <CountUpNumber value={annualRecovered} formatFn={formatZAR} />
-                </div>
-                <span className="font-mono text-[10px] text-[var(--color-success)] mt-1 block font-medium">
-                  +12-Month Net Cashflow Protected
-                </span>
               </div>
-
-              {/* Secondary Metric: Annual Leak Prevented */}
-              <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
-                    Total Annual Leak Prevented
-                  </span>
-                  <ShieldCheck className="w-3.5 h-3.5 text-red-400" />
-                </div>
-                <div className="font-display text-2xl sm:text-3xl text-white font-bold tracking-tight tabular-nums">
-                  <CountUpNumber value={annualLeak} formatFn={formatZAR} />
-                </div>
-                <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
-                  Missed calls + slow quote penalties
-                </span>
-              </div>
-
-              {/* Tertiary Metric: Projected Annual Run-Rate */}
-              <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
-                    Projected Annual Run-Rate
-                  </span>
-                  <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
-                </div>
-                <div className="font-display text-2xl sm:text-3xl text-emerald-400 font-bold tracking-tight tabular-nums">
-                  <CountUpNumber value={annualRunRate} formatFn={formatZAR} />
-                </div>
-                <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
-                  Current turnover + recovered revenue
-                </span>
-              </div>
-
-              {/* Quaternary Metric: Hours Reclaimed */}
-              <div className="p-5 rounded-xl bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10">
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-mono text-[11px] text-[var(--color-muted)] uppercase tracking-wider font-medium">
-                    Admin Hours Reclaimed
-                  </span>
-                  <Clock3 className="w-3.5 h-3.5 text-amber-400" />
-                </div>
-                <div className="font-display text-2xl sm:text-3xl text-white font-bold tracking-tight tabular-nums">
-                  <CountUpNumber value={annualHoursSaved} /> hrs
-                </div>
-                <span className="font-mono text-[10px] text-[var(--color-muted-dark)] mt-1 block">
-                  ~<CountUpNumber value={annualLeadsSaved} /> client leads saved / year
-                </span>
-              </div>
-            </div>
-
-            {/* Bottom summary note */}
-            <div className="mt-6 pt-4 border-t border-black/10 dark:border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-[var(--color-muted)]">
-              <span className="flex items-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[var(--color-tertiary)]" />
-                Projections modeled on verified Cape Town trades & contractor conversion data.
-              </span>
-              <button 
-                type="button"
-                onClick={onOpenAudit}
-                className="text-[var(--color-tertiary)] hover:underline font-semibold cursor-pointer inline-flex items-center gap-1"
-              >
-                Claim your customized audit <ArrowRight className="w-3.5 h-3.5" />
-              </button>
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </section>

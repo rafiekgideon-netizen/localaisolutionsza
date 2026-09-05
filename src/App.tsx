@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
@@ -47,7 +48,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[var(--color-primary)] font-body text-[var(--color-neutral-soft)] antialiased transition-colors duration-300">
+      <div className="min-h-screen w-full max-w-full overflow-x-hidden bg-[var(--color-primary)] font-body text-[var(--color-neutral-soft)] antialiased transition-colors duration-400 ease-in-out">
         <ScrollProgressBar />
         <Navbar onOpenAudit={() => setIsAuditModalOpen(true)} />
         
@@ -125,6 +126,7 @@ export default function App() {
         />
 
         <Chatbot />
+        <Analytics />
       </div>
     </ThemeProvider>
   );
