@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { ThemeProvider } from "./context/ThemeContext";
 import { Navbar } from "./components/Navbar";
 import { Hero } from "./components/Hero";
@@ -127,6 +128,7 @@ export default function App() {
 
         <Chatbot />
         <Analytics />
+        <SpeedInsights />
       </div>
     </ThemeProvider>
   );
